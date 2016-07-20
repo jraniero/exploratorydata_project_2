@@ -1,4 +1,5 @@
 ## This first line will likely take a few seconds. Be patient!
+## Not completed!
 NEI <- readRDS("summarySCC_PM25.rds")
 SCC <- readRDS("Source_Classification_Code.rds")
 
@@ -18,32 +19,22 @@ per_year<-with(NEI_Baltimore,tapply(Emissions,year,sum))
 #Calculate total per year for LA
 per_year_LA<-with(NEI_LA,tapply(Emissions,year,sum))
 
-png("plot6.png",height=480,width=960)
-
-#We need to compare the absolute differences between the two files
-#We'll create a side by side plot, with different scales to highlight
-#which of the two cities has more differences
-par(mfrow=c(1,2))
-
-
-#Plot Baltimore
+df<-data.frame(Year=numeric(),City=character(),Emissions=numeric())
+df<-rbind(df,data.frame...)
+png("plot6.png",height=480,width=480)
 plot(names(per_year),per_year,
-     main="Baltimore",
+     main="Emissions per year for motor vehicle",
      xlab="Year",
      ylab="Emissions",
-     xlim=range(1999,2008),
+     
      #Set range to maximum of Baltimore and LA
-     type="l")
+     ylim=range(max(per_year,per_year_LA),min(per_year,per_year_LA)),
+     type="n")
 
-#Plot LA
-plot(names(per_year_LA),per_year_LA,
-     main="Los Angeles",
-     xlab="Year",
-     ylab="Emissions",
-     xlim=range(1999,2008),
-     type="l")
+#Plot lines for Baltimore
+lines(names(per_year),per_year,col=1,type="b")
 
-#Add a main title
-mtext("Emissions per year for motor vehicle",outer=TRUE)
-
+#Plot lines for LA
+lines(names(per_year_LA),per_year_LA,col=2,type="b")
+legend("top",legend=c("Baltimore","Los Angeles"),lty=1,col=c(1,2),ncol=2)
 dev.off()

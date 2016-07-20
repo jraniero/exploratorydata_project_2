@@ -6,7 +6,7 @@ SCC <- readRDS("Source_Classification_Code.rds")
 SCC_OnRoad<-SCC[SCC$Data.Category=="Onroad",]
 
 #Subset NEI only to Emissions in Baltimore related to road sources
-NEI<-subset(NEI,fips=="24510" & NEI$SCC %in% SCC_Onroad$SCC)
+NEI<-subset(NEI,fips=="24510" & NEI$SCC %in% SCC_OnRoad$SCC)
 
 #Calculate aggregate per year
 per_year<-with(NEI,tapply(Emissions,year,sum))
@@ -15,6 +15,7 @@ plot(names(per_year),per_year,
      main="Emissions per year in Baltimore for motor vehicle",
      xlab="Year",
      ylab="Emissions",
+     xlim=range(1999,2008),
      type="n")
 
 #Add line to show evolution

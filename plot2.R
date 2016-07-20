@@ -13,6 +13,7 @@ plot(names(per_year),per_year,
      main="Emissions per year in Baltimore",
      xlab="Year",
      ylab="Emissions",
+     xlim=range(1999,2008),
      type="n")
 
 #Line plot of Emissions evolution per year

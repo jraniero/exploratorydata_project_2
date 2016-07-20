@@ -1,5 +1,5 @@
 ## This first line will likely take a few seconds. Be patient!
-## Convert to ggplot!!!!
+
 NEI <- readRDS("summarySCC_PM25.rds")
 SCC <- readRDS("Source_Classification_Code.rds")
 #Create Subset of SCC only with Coal
@@ -16,6 +16,7 @@ plot(names(per_year),per_year,
      main="Emissions per year related to Coal",
      xlab="Year",
      ylab="Emissions",
+     xlim=range(1999,2008),
      type="n")
 
 #Plot line to show evolution of Emissions per year

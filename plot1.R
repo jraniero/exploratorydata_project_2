@@ -14,6 +14,7 @@ plot(names(per_year),per_year,
      main="Total emissions per year",
      xlab="Year",
      ylab="Emissions (thousands)",
+     xlim=range(1999,2008),
      type="n")
 
 #Line plot of the Emissions evolution per year
